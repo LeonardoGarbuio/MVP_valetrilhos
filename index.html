@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infracorp Clone - Earth 3D</title>
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body>
+    <!-- Background Video -->
+    <video id="bg-video" autoplay loop muted playsinline>
+      <!-- Substitua 'fundo.mp4' pelo caminho correto do seu vídeo -->
+      <source src="/fundo.mp4" type="video/mp4">
+    </video>
+
+    <!-- Background Canvas -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- UI Overlay (Fixed) -->
+    <div class="ui-layer">
+      <!-- Header -->
+      <header>
+        <div class="logo">INFRACORP</div>
+        <nav>
+          <a href="#">Home ↗</a>
+          <a href="#">Horizons ↗</a>
+          <a href="#">Our Approach ↗</a>
+        </nav>
+      </header>
+
+      <!-- Step 1 Text -->
+      <div class="text-step" id="text-step-1">
+        <h1 class="title">Strategic by Nature<br>Systemic at Core</h1>
+        <p class="subtitle">Infracorp® is an international investment firm that develops and operates systemic infrastructure with a geostrategic approach creating long-term value across key global sectors.</p>
+        <a href="#" class="explore-btn">Explore Horizons ↗</a>
+      </div>
+
+      <!-- Massive ambient glow behind Earth -->
+      <div class="earth-ambient-glow" id="earth-ambient-glow"></div>
+
+      <!-- Scroll Arrow -->
+      <div class="scroll-arrow" id="scroll-arrow">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+
+      <!-- Step 3 Text (One Vision) -->
+      <div class="text-step" id="text-step-3" style="opacity: 0; transform: translateY(50px);">
+        <h1 class="title-large">One Vision</h1>
+      </div>
+
+      <!-- Step 4 Text (Four Horizons) -->
+      <div class="text-step" id="text-step-4" style="opacity: 0; transform: translateY(50px);">
+        <h1 class="title-large">One Vision Four Horizons</h1>
+        <p class="subtitle">Infracorp focuses on four strategic horizons...</p>
+      </div>
+    </div>
+
+    <!-- Scrollable Space (creates the scrollbar) -->
+    <div class="scroll-space"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
