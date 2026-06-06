@@ -301,11 +301,12 @@ const morphState = {
 };
 
 // URLs dos modelos
+const basePath = import.meta.env.BASE_URL;
 const modelURLs = [
-  '/models/airplane.glb',
-  '/models/energy16.glb',
-  '/models/rocket.glb',
-  '/models/datacenter.glb',
+  `${basePath}models/airplane.glb`,
+  `${basePath}models/energy16.glb`,
+  `${basePath}models/rocket.glb`,
+  `${basePath}models/datacenter.glb`,
 ];
 
 // Carregar modelos e construir timeline GSAP depois
