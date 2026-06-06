@@ -4,62 +4,284 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Infracorp Clone - Earth 3D</title>
+    <title>Infracorp | Strategic by Nature, Systemic at Core</title>
     <link rel="stylesheet" href="/src/style.css">
   </head>
   <body>
-    <!-- Background Video -->
-    <video id="bg-video" autoplay loop muted playsinline>
-      <!-- Substitua 'fundo.mp4' pelo caminho correto do seu vídeo -->
-      <source src="/fundo.mp4" type="video/mp4">
-    </video>
+    <!-- Fixed Header -->
+    <header class="fixed-header">
+      <div class="logo">INFRACORP</div>
+      <nav>
+        <a href="#sec-hero">Home ↗</a>
+        <a href="#sec-vision">Horizons ↗</a>
+        <a href="#sec-approach">Our Approach ↗</a>
+      </nav>
+    </header>
 
-    <!-- Background Canvas -->
+    <!-- WebGL Canvas for 3D Earth -->
     <canvas id="webgl-canvas"></canvas>
 
-    <!-- UI Overlay (Fixed) -->
-    <div class="ui-layer">
-      <!-- Header -->
-      <header>
-        <div class="logo">INFRACORP</div>
-        <nav>
-          <a href="#">Home ↗</a>
-          <a href="#">Horizons ↗</a>
-          <a href="#">Our Approach ↗</a>
-        </nav>
-      </header>
+    <!-- Snapping Scroll Container containing all 11 slides -->
+    <div id="scroll-container">
+      
+      <!-- Section 1: Hero / Home -->
+      <section class="section-slide" id="sec-hero">
+        <div class="text-step">
+          <h1 class="title">Strategic by Nature<br>Systemic at Core</h1>
+          <p class="subtitle">Infracorp® is an international investment firm that develops and operates systemic infrastructure with a geostrategic approach creating long-term value across key global sectors.</p>
+          <a href="#sec-hero-centered" class="explore-btn">Explore Horizons ↗</a>
+        </div>
+        <div class="scroll-arrow" id="scroll-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </section>
 
-      <!-- Step 1 Text -->
-      <div class="text-step" id="text-step-1">
-        <h1 class="title">Strategic by Nature<br>Systemic at Core</h1>
-        <p class="subtitle">Infracorp® is an international investment firm that develops and operates systemic infrastructure with a geostrategic approach creating long-term value across key global sectors.</p>
-        <a href="#" class="explore-btn">Explore Horizons ↗</a>
-      </div>
+      <!-- Section 2: Hero Centered (Shrunk title, no subtitle) -->
+      <section class="section-slide" id="sec-hero-centered">
+        <div class="text-step">
+          <h1 class="title-shrunk">Strategic by Nature<br>Systemic at Core</h1>
+        </div>
+      </section>
 
-      <!-- Massive ambient glow behind Earth -->
-      <div class="earth-ambient-glow" id="earth-ambient-glow"></div>
+      <!-- Section 3: One Vision -->
+      <section class="section-slide" id="sec-vision">
+        <div class="text-step">
+          <h1 class="title-large">One Vision</h1>
+          <p class="subtitle">Infracorp® focuses on four strategic horizons: Energy, Transportation, Decentralized AI, and Space. Each stands as a pillar of future resilience; from clean and circular energy systems to sustainable mobility, sovereign digital infrastructure, and the next frontier of space-enabled innovation.</p>
+        </div>
+      </section>
 
-      <!-- Scroll Arrow -->
-      <div class="scroll-arrow" id="scroll-arrow">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-          <path d="M12 5v14M5 12l7 7 7-7"/>
-        </svg>
-      </div>
+      <!-- Section 4: One Vision Four Horizons -->
+      <section class="section-slide" id="sec-vision-horizons">
+        <div class="text-step">
+          <h1 class="title-large">One Vision Four Horizons</h1>
+          <p class="subtitle">Infracorp® focuses on four strategic horizons: Energy, Transportation, Decentralized AI, and Space. Each stands as a pillar of future resilience; from clean and circular energy systems to sustainable mobility, sovereign digital infrastructure, and the next frontier of space-enabled innovation.</p>
+        </div>
+      </section>
 
-      <!-- Step 3 Text (One Vision) -->
-      <div class="text-step" id="text-step-3" style="opacity: 0; transform: translateY(50px);">
-        <h1 class="title-large">One Vision</h1>
-      </div>
+      <!-- Section 3: Horizon 1 - Transportation -->
+      <section class="section-slide" id="sec-transportation">
+        <div class="text-step left-aligned">
+          <div class="horizon-badge">Horizon 1</div>
+          <h1 class="title-horizon">Transportation & Infrastructure services</h1>
+          <p class="subtitle-horizon">Infracorp® is redefining the future of air mobility, transforming private aviation, logistics, and maintenance into a seamless ecosystem of sustainable, connected, and high-performance infrastructure.</p>
+          <a href="#" class="explore-btn">Discover More ↗</a>
+        </div>
+      </section>
 
-      <!-- Step 4 Text (Four Horizons) -->
-      <div class="text-step" id="text-step-4" style="opacity: 0; transform: translateY(50px);">
-        <h1 class="title-large">One Vision Four Horizons</h1>
-        <p class="subtitle">Infracorp focuses on four strategic horizons...</p>
-      </div>
+      <!-- Section 4: Horizon 2 - Energy -->
+      <section class="section-slide" id="sec-energy">
+        <div class="text-step right-aligned">
+          <div class="horizon-badge">Horizon 2</div>
+          <h1 class="title-horizon">Energy Transition & Independence</h1>
+          <p class="subtitle-horizon">Infracorp® is reshaping the energy landscape, advancing projects in utility scale energy production, storage and circular economy to build cleaner, smarter, and more resilient systems for the future.</p>
+          <a href="#" class="explore-btn">Discover More ↗</a>
+        </div>
+      </section>
+
+      <!-- Section 5: Horizon 3 - Space -->
+      <section class="section-slide" id="sec-space">
+        <div class="text-step left-aligned">
+          <div class="horizon-badge">Horizon 3</div>
+          <h1 class="title-horizon">Space Exploration & Systems</h1>
+          <p class="subtitle-horizon">Infracorp® is pioneering the next frontier of the space economy, developing commercial spaceflight platforms, orbital data centers, and advanced space infrastructure that bridge innovation between Earth and Low Earth Orbit.</p>
+          <a href="#" class="explore-btn">Discover More ↗</a>
+        </div>
+      </section>
+
+      <!-- Section 6: Horizon 4 - Hypercenters & AI -->
+      <section class="section-slide" id="sec-ai">
+        <div class="text-step right-aligned">
+          <div class="horizon-badge">Horizon 4</div>
+          <h1 class="title-horizon">Hypercenters® and Decentralized AI</h1>
+          <p class="subtitle-horizon">Infracorp® is building the future of decentralized AI, creating GDPR-compliant hypercenters® and sovereign data infrastructure that enable secure, transparent, and sustainable intelligence across the globe.</p>
+          <a href="#" class="explore-btn">Discover More ↗</a>
+        </div>
+      </section>
+
+      <!-- Section 7: The InfraCore -->
+      <section class="section-slide" id="sec-infracore">
+        <div class="infracore-container">
+          <h1 class="title-infracore">The InfraCore®</h1>
+          <p class="subtitle-infracore">Infracorp’s decentralized-applied-AI operating system purpose-built for infrastructure development.</p>
+          <div class="infracore-features">
+            <div class="infracore-feature-item">
+              <span class="feature-num">01</span>
+              <p>Our AI operating system has 7 layers, each contributing to the strategic success of our projects.</p>
+            </div>
+            <div class="infracore-feature-item">
+              <span class="feature-num">02</span>
+              <p>InfraCore®’s outputs provide to our analysts a valuable sensitivity approach to provide the best infrastructure KPIs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Our Approach -->
+      <section class="section-slide" id="sec-approach">
+        <div class="approach-container">
+          <h1 class="title-section-header">From Vision to Visible</h1>
+          <p class="section-intro-p">Our approach combines strategic development, innovation, and financial discipline. Infracorp's investment model follows a four-phase discipline to deliver high performance infrastructure globally.</p>
+          <div class="approach-grid">
+            <div class="approach-card">
+              <h3>Define</h3>
+              <p>We identify macro-trends and structural gaps to originate scalable, high-impact infrastructure investment opportunities.</p>
+            </div>
+            <div class="approach-card">
+              <h3>Develop</h3>
+              <p>We strategize, engineer and structure projects through disciplined processes and partnerships across key infrastructure sectors.</p>
+            </div>
+            <div class="approach-card">
+              <h3>Derisk</h3>
+              <p>We implement robust governance, regulatory alignment, contracts and capital optimization to mitigate risks and ensure long-term asset resilience.</p>
+            </div>
+            <div class="approach-card">
+              <h3>Deliver</h3>
+              <p>We execute and operate with institutional precision, delivering sustainable, risk-adjusted returns and measurable systemic value.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 9: Partners -->
+      <section class="section-slide" id="sec-partners">
+        <div class="partners-container">
+          <h1 class="title-section-header">We make our Partners the Heroes</h1>
+          <p class="section-intro-p">We empower stakeholders to shape lasting infrastructure - turning shared purpose into measurable progress.</p>
+          <div class="partners-grid">
+            <div class="partners-col">
+              <h3>Governments</h3>
+              <p>We co-design strategic assets aligned with national development goals - ensuring regulatory clarity, sustainability, and long-term public benefit.</p>
+            </div>
+            <div class="partners-col">
+              <h3>Investors</h3>
+              <p>We integrate institutional capital into resilient, de-risked platforms - achieving stable returns through disciplined structuring and operational excellence.</p>
+            </div>
+            <div class="partners-col">
+              <h3>Local Communities</h3>
+              <p>We create assets that enhance mobility, access, and opportunity - ensuring each project delivers measurable social and environmental value.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 10: Meet the Team -->
+      <section class="section-slide" id="sec-team">
+        <div class="team-container">
+          <h1 class="title-section-header">Meet the Team</h1>
+          <div class="team-scroll-list">
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Filippo Ghirelli</span>
+                <span class="member-role">Founder and Executive Chairman</span>
+              </div>
+              <p class="member-bio">Exponential thinker, entrepreneur and seasoned CEO with extensive experience in energy, infrastructure and industrial ventures. Founder of Genera Group and Infracorp, and Chairman of Sophrance Global®. A Harvard Business School alumnus with unparalleled visionary and geostrategic approach.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Claudio Bracci</span>
+                <span class="member-role">Chief Executive Officer</span>
+              </div>
+              <p class="member-bio">Manager with long experience leading successful teams in multinational companies. Always committed to ICT business development, he designs integrated strategies for the repositioning and implementation of new business models. Alumnus of La Sapienza, LUISS, Bocconi and ELIS.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Andrea Caturelli</span>
+                <span class="member-role">General Manager and Board Member</span>
+              </div>
+              <p class="member-bio">Experienced executive specializing in investment management, governance, and strategic turnarounds. CEO of Sophrance Global, and former Group General Counsel at Genera Group. Holds Executive and International MBA.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Giacomo Ghirelli</span>
+                <span class="member-role">Head of Asset Management and Board Member</span>
+              </div>
+              <p class="member-bio">Seasoned executive with deep expertise in asset and fund management. Formerly at DEA Capital, The Carlyle Group, BNP Paribas Real Estate, and Investire SGR. He is also currently Executive Chairman of Riviera Airport S.p.A. reaching relevant results in the complete turnaround of the aviation facility.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Fulvio Maccarone</span>
+                <span class="member-role">Chief Investment Officer</span>
+              </div>
+              <p class="member-bio">Asset Management Executive, CIO and Board Member with global investment expertise across private equity, venture capital and impact funds. He has led and managed extremely relevant investments in many sectors and has strong international track record across Europe, the US, Asia and LatAm.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Guido Coppola</span>
+                <span class="member-role">General Counsel</span>
+              </div>
+              <p class="member-bio">Corporate lawyer with expertise in governance, M&A, and legal affairs. He has been Head of Legal and Corporate Affairs at Tiberiade Holding S.p.A., overseeing major industrial and real estate groups. Holds an Executive MBA from LUMSA and has been advising key institutional projects.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Andrea Bogni</span>
+                <span class="member-role">Business Development Specialist</span>
+              </div>
+              <p class="member-bio">Expert in business development on innovation frontiers and marketing management with international experience across Europe and the U.S. Connects global leaders through entrepreneurial initiatives being President of the Young Division of the Monaco Ambassadors Club.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Leonardo Zucol</span>
+                <span class="member-role">Finance Structuring Manager</span>
+              </div>
+              <p class="member-bio">Finance professional specialized in private equity, direct investments, and infrastructure. Focuses on financial structuring and complex project development across Switzerland, Italy, and Monaco. Holds an MSc in Finance from the International University of Monaco.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Carmine Bassetti</span>
+                <span class="member-role">Head of Transportation & Infra-Services</span>
+              </div>
+              <p class="member-bio">Aviation executive with over 27 years in airport development, restructuring, and asset management. Former CEO of Marche Airport and senior leader at Asiatique Advisory, Garda Airport System, and GMR International. Civil engineer from the University of Rome with extensive international experience across major aviation projects.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Alessandro Bergui</span>
+                <span class="member-role">Head of Hypercenters® and Decentralized AI</span>
+              </div>
+              <p class="member-bio">Executive with over 20 years in engineering, energy systems, and industrial operations with a deep expertise in development of hyperscale datacenters with multiprotocol approach. He has promoted and realized over 30 datacenter programs in Europe.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Giovanna D'Esposito</span>
+                <span class="member-role">Advisory Board Member</span>
+              </div>
+              <p class="member-bio">Senior executive with global experience in managing tech platforms under complex regulatory contexts. Former General Manager at Uber Southern Europe and Managing Director in online gaming. Expert in digital transformation, P&L management, and international growth.</p>
+            </div>
+            <div class="team-member">
+              <div class="member-header">
+                <span class="member-name">Giuseppe Scarlata</span>
+                <span class="member-role">Head of Transportation & Infra-Services Operations</span>
+              </div>
+              <p class="member-bio">Aviation professional with over 25 years of experience in airport operations and management. Oversees airport operations and compliance across Infracorp’s airports projects. Currently Head of Operations and Post Holder at Riviera Airport S.p.A.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 11: Footer / Better Together -->
+      <section class="section-slide" id="sec-footer">
+        <div class="footer-container">
+          <h1 class="title-section-header">Better Together</h1>
+          <p class="footer-intro-p">We collaborate with visionary partners, investors, and institutions to build the systemic infrastructures shaping tomorrow's world.</p>
+          <a href="mailto:info@infracorp.global" class="explore-btn mail-btn">Get in Touch ↗</a>
+          
+          <div class="footer-bottom">
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/company/infracorp-s-p-a/" target="_blank">Join us on LinkedIn</a>
+              <a href="https://www.iubenda.com/privacy-policy/59160201" target="_blank">Privacy Policy</a>
+              <a href="https://www.iubenda.com/privacy-policy/59160201/cookie-policy" target="_blank">Cookie Policy</a>
+            </div>
+            <div class="footer-copy">
+              <p>© 2025 INFRACORP®. All rights reserved.</p>
+              <p class="footer-tagline">Transparency by design. Innovation for impact.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
-
-    <!-- Scrollable Space (creates the scrollbar) -->
-    <div class="scroll-space"></div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
