@@ -301,12 +301,11 @@ const morphState = {
 };
 
 // URLs dos modelos
-const basePath = import.meta.env.BASE_URL;
 const modelURLs = [
-  `${basePath}models/airplane.glb`,
-  `${basePath}models/energy16.glb`,
-  `${basePath}models/rocket.glb`,
-  `${basePath}models/datacenter.glb`,
+  './models/airplane.glb',
+  './models/energy16.glb',
+  './models/rocket.glb',
+  './models/datacenter.glb',
 ];
 
 // Carregar modelos e construir timeline GSAP depois
@@ -579,10 +578,10 @@ window.addEventListener('resize', () => {
 // =========================================================================
 // Animation Loop & Global Parallax
 // =========================================================================
-const clock = new THREE.Clock();
+const startTime = performance.now();
 
 const tick = () => {
-  const elapsedTime = clock.getElapsedTime();
+  const elapsedTime = (performance.now() - startTime) / 1000;
 
   // Slow continuous rotation for all earths starting from Brazil
   earthGroups.forEach(group => {
