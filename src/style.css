@@ -86,8 +86,6 @@ body {
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
   z-index: 2;
   scrollbar-width: none; /* Hide scrollbar Firefox */
 }
@@ -113,7 +111,7 @@ body {
 .text-step {
   text-align: center;
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,6 +123,7 @@ body {
   align-items: flex-start;
   max-width: 700px;
   margin-right: auto;
+  margin-top: -200px;
 }
 
 .text-step.right-aligned {
@@ -132,16 +131,17 @@ body {
   align-items: flex-end;
   max-width: 700px;
   margin-left: auto;
+  margin-top: -200px;
 }
 
 .title {
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 5.5vw, 5rem);
   font-weight: 300;
   line-height: 1.1;
 }
 
 .title-large {
-  font-size: clamp(4rem, 8vw, 6.5rem);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
   font-weight: 300;
   line-height: 1.1;
 }
@@ -181,7 +181,10 @@ body {
 }
 
 .explore-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   margin-top: 15px;
   padding: 12px 28px;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -192,6 +195,15 @@ body {
   font-size: 0.9rem;
   transition: all 0.3s ease;
   pointer-events: auto;
+}
+
+.explore-btn .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.explore-btn:hover .arrow {
+  transform: rotate(45deg);
 }
 
 .explore-btn:hover {
@@ -316,33 +328,55 @@ body {
 }
 
 .approach-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.005) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 35px 25px;
+  border-radius: 16px;
+  padding: 40px 30px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.approach-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .approach-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0, 160, 220, 0.4);
-  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.approach-card:hover::before {
+  opacity: 1;
 }
 
 .approach-card h3 {
-  font-size: 1.4rem;
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-size: 1.45rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
   color: #fff;
 }
 
 .approach-card p {
-  font-size: 0.92rem;
-  opacity: 0.7;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  line-height: 1.65;
   font-weight: 300;
 }
 

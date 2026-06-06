@@ -338,7 +338,7 @@ function buildGSAPTimeline() {
       endTrigger: "#sec-footer",
       start: "top top",
       end: "bottom bottom",
-      scrub: 1,
+      scrub: 1.5, // Totalmente sincronizado com o texto (1.5s)
     }
   });
 
@@ -488,42 +488,47 @@ function buildGSAPTimeline() {
     }
   }, 3);
 
-  // ── Passos 4→7: Morphing contínuo entre os 4 modelos ──────────────
-  // scrollProgress: 0.0 = avião, 1.0 = energia, 2.0 = caminhão, 3.0 = datacenter
-  // O GSAP anima scrollProgress de 0 a 3 linearmente ao longo de 3 intervalos.
-  // No render loop, determinamos qual par de targets está ativo.
+  // ── Função auxiliar para interpolar o Morph baseado no scroll ──────
+  const updateMorph = () => {
+    const sp = morphState.scrollProgress;
+    const fromIdx = Math.min(Math.floor(sp), 3); // Vai de 0 a 3
+    const toIdx = fromIdx + 1;                   // Vai até 4
+    const localProgress = sp - fromIdx;
+
+    if (localProgress < 0.001) {
+      if (morphState._lastFrom !== fromIdx || morphState._lastTo !== fromIdx) {
+        particleSystem.setMorphTargets(fromIdx, fromIdx);
+        morphState._lastFrom = fromIdx;
+        morphState._lastTo = fromIdx;
+      }
+      particleSystem.setMorphProgress(0.0);
+    } else {
+      if (morphState._lastFrom !== fromIdx || morphState._lastTo !== toIdx) {
+        particleSystem.setMorphTargets(fromIdx, toIdx);
+        morphState._lastFrom = fromIdx;
+        morphState._lastTo = toIdx;
+      }
+      particleSystem.setMorphProgress(localProgress);
+    }
+  };
+
+  // ── Passos 4→7: Morphing contínuo entre os 4 primeiros modelos ────────
   tl.to(morphState, {
     scrollProgress: 3.0,
     duration: 3,
     ease: "none",
-    onUpdate: () => {
-      const sp = morphState.scrollProgress;
-      const fromIdx = Math.min(Math.floor(sp), 2); // 0, 1, ou 2
-      const toIdx = fromIdx + 1;                    // 1, 2, ou 3
-      const localProgress = sp - fromIdx;           // 0.0 a 1.0 dentro do par
-
-      // Se está exatamente em um modelo inteiro (ex: 0.0, 1.0, 2.0)
-      if (localProgress < 0.001) {
-        // Estamos no modelo fromIdx
-        if (morphState._lastFrom !== fromIdx || morphState._lastTo !== fromIdx) {
-          particleSystem.setMorphTargets(fromIdx, fromIdx);
-          morphState._lastFrom = fromIdx;
-          morphState._lastTo = fromIdx;
-        }
-        particleSystem.setMorphProgress(0.0);
-      } else {
-        // Transição entre fromIdx e toIdx
-        if (morphState._lastFrom !== fromIdx || morphState._lastTo !== toIdx) {
-          particleSystem.setMorphTargets(fromIdx, toIdx);
-          morphState._lastFrom = fromIdx;
-          morphState._lastTo = toIdx;
-        }
-        particleSystem.setMorphProgress(localProgress);
-      }
-    }
+    onUpdate: updateMorph
   }, 4);
 
-  // ── Passo 7→8: Hypercenters → InfraCore (Partículas fade-out) ─────
+  // ── Passo 7→8: Hypercenters → InfraCore (Deslizar DataCenter pro meio) ─────
+  tl.to(morphState, {
+    scrollProgress: 4.0,
+    duration: 1,
+    ease: "sine.inOut", // Mais suave e menos brusco que o power2
+    onUpdate: updateMorph
+  }, 7);
+
+  // ── Passo 8→9: InfraCore → Our Approach (Partículas somem) ───────────
   tl.to(morphState, {
     opacity: 0.0,
     duration: 1,
@@ -531,10 +536,10 @@ function buildGSAPTimeline() {
     onUpdate: () => {
       particleSystem.setOpacity(morphState.opacity);
     }
-  }, 7);
+  }, 8);
 
-  // ── Passo 8→10: InfraCore → Footer (sem 3D) ───────────────────────
-  tl.to({}, { duration: 4 }, 8);
+  // ── Preenchimento final ────────────────────────────────────────────────
+  tl.to({}, { duration: 1 }, 9);
 }
 
 // =========================================================================
@@ -571,7 +576,7 @@ window.addEventListener('resize', () => {
 });
 
 // =========================================================================
-// Animation Loop
+// Animation Loop & Global Parallax
 // =========================================================================
 const clock = new THREE.Clock();
 
@@ -591,3 +596,52 @@ const tick = () => {
 };
 
 tick();
+
+// =========================================================================
+// Custom Wheel Lock (1 Tick = 1 Slide with Lenis Override)
+// =========================================================================
+let isScrolling = false;
+let currentSlideIndex = 0; // Máquina de estado à prova de falhas
+
+window.addEventListener('wheel', (e) => {
+  // Impede o scroll nativo totalmente
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (isScrolling) return;
+
+  const direction = Math.sign(e.deltaY);
+  if (direction === 0) return;
+
+  const maxSections = document.querySelectorAll('.section-slide').length;
+  currentSlideIndex += direction;
+
+  // Limita o index
+  if (currentSlideIndex < 0) currentSlideIndex = 0;
+  if (currentSlideIndex >= maxSections) currentSlideIndex = maxSections - 1;
+
+  isScrolling = true;
+
+  const windowHeight = window.innerHeight;
+
+  lenis.scrollTo(currentSlideIndex * windowHeight, {
+    duration: 1.5
+  });
+
+  setTimeout(() => {
+    isScrolling = false;
+  }, 1500);
+
+}, { passive: false, capture: true });
+
+// =========================================================================
+// Smoke Test MVP: Botões de Acesso
+// =========================================================================
+document.querySelectorAll('.explore-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    if (btn.getAttribute('href') === '#solicitar-acesso') {
+      e.preventDefault();
+      alert('MVP Greentech: O usuário clicou e seria redirecionado para a página de Formulário / Typeform para "Solicitar Acesso".');
+    }
+  });
+});
